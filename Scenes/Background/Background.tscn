@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://jojohcdt6eqe"]
+
+[ext_resource type="Texture2D" uid="uid://mxwcm3b8sbar" path="res://Assets/Background/Background_0.png" id="1_m0ouw"]
+[ext_resource type="Texture2D" uid="uid://cqbn3bho5i5e8" path="res://Assets/Background/Background_1.png" id="2_dyxss"]
+[ext_resource type="Texture2D" uid="uid://cgf8j5h5nb03h" path="res://Assets/Background/Grass_background_1.png" id="3_334ed"]
+[ext_resource type="Texture2D" uid="uid://cj5367ecrumam" path="res://Assets/Background/Grass_background_2.png" id="4_37g1c"]
+
+[node name="Background" type="ParallaxBackground"]
+
+[node name="Sky" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sky"]
+position = Vector2(583, 328.25)
+scale = Vector2(1.52344, 1.58053)
+texture = ExtResource("1_m0ouw")
+
+[node name="Church" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(1022.43, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Church"]
+position = Vector2(577, 382)
+scale = Vector2(1.52734, 1.27404)
+texture = ExtResource("2_dyxss")
+
+[node name="Bushes" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1168, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bushes"]
+position = Vector2(527, 441)
+texture = ExtResource("3_334ed")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Bushes"]
+position = Vector2(175, 442)
+texture = ExtResource("4_37g1c")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Bushes"]
+position = Vector2(878, 443)
+texture = ExtResource("3_334ed")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Bushes"]
+position = Vector2(1230, 443)
+texture = ExtResource("3_334ed")

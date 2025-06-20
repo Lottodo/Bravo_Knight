@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvkypld6slpr4"]
+
+[ext_resource type="Script" uid="uid://dxyk5wgf3mmus" path="res://Scenes/BaseEnemy/base_enemy.gd" id="1_nknsj"]
+
+[node name="BaseEnemy" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_nknsj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="PatrolTimer" type="Timer" parent="."]
+
+[node name="InvincibleTimer" type="Timer" parent="."]
+one_shot = true
