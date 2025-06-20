@@ -335,7 +335,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1htnp"]
-size = Vector2(16, 32)
+size = Vector2(16, 37)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlvik"]
 size = Vector2(51.5, 38)
@@ -354,13 +354,12 @@ animation = &"Idle"
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, 19)
+position = Vector2(0, 21.5)
 shape = SubResource("RectangleShape2D_1htnp")
 
 [node name="FloorDetector" type="RayCast2D" parent="."]
 position = Vector2(0, 16)
-target_position = Vector2(0, 25)
+target_position = Vector2(0, 31)
 
 [node name="AttackHitbox" type="Area2D" parent="."]
 collision_layer = 16

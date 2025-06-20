@@ -11,7 +11,7 @@ class_name Player
 enum PLAYER_STATE {IDLE, RUN, ATTACK, JUMP, HIT, FALL, DEATH}
 
 @export var movement_speed = 25000.0
-@export var jump_speed = 55000.0
+@export var jump_speed = 60000.0
 @export var gravity = 2000.0
 var current_state : PLAYER_STATE = PLAYER_STATE.IDLE
 var is_grounded = false
