@@ -5,7 +5,7 @@ class_name Player
 @onready var anim_sprite2d = $AnimatedSprite2D
 @onready var floor_detector = $FloorDetector
 @onready var attack_area: Area2D = $AttackHitbox
-@onready var attack_collision: CollisionShape2D = $CollisionHitbox
+@onready var attack_collision: CollisionShape2D = $%CollisionHitbox
 @onready var invincible_timer = $InvincibleTimer
 
 enum PLAYER_STATE {IDLE, RUN, ATTACK, JUMP, HIT, FALL, DEATH}
