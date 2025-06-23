@@ -214,9 +214,10 @@ script = ExtResource("2_kdlw1")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_amtof")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
-frame_progress = 0.532285
+frame = 10
+frame_progress = 1.0
 
 [node name="CollisionShape2D" parent="DetectionArea" index="0"]
 position = Vector2(-2, 5)

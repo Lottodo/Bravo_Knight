@@ -151,7 +151,7 @@ radius = 16.0312
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3rac1")
 animation = &"bomb_attack"
-frame_progress = 0.675614
+frame_progress = 0.315389
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_rw21l")
