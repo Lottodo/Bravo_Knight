@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=3 uid="uid://maeka1rxexb8"]
+
+[ext_resource type="Script" uid="uid://diqcxbc852kwi" path="res://Scenes/MainMenu/main_menu.gd" id="1_0l8wx"]
+[ext_resource type="Texture2D" uid="uid://mxwcm3b8sbar" path="res://Assets/Background/Background_0.png" id="1_v763k"]
+[ext_resource type="AudioStream" uid="uid://dt2fhi6fa08w2" path="res://Assets/Audio/menu.mp3" id="2_qgdf6"]
+[ext_resource type="FontFile" uid="uid://bkojnn0uci8wa" path="res://Assets/Fonts/DungeonFont.ttf" id="3_adu2g"]
+[ext_resource type="Texture2D" uid="uid://osobthgwbyor" path="res://Assets/UI/Default.png" id="4_0l8wx"]
+[ext_resource type="Texture2D" uid="uid://cji2dt8fw1o66" path="res://Assets/UI/Hover.png" id="5_n5jej"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2r307"]
+font = ExtResource("3_adu2g")
+font_size = 97
+outline_size = 37
+outline_color = Color(0.290196, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_omq0y"]
+font = ExtResource("3_adu2g")
+font_size = 53
+outline_size = 17
+outline_color = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0217, 1.0217)
+script = ExtResource("1_0l8wx")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_v763k")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_qgdf6")
+autoplay = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Bravo Knight"
+label_settings = SubResource("LabelSettings_2r307")
+horizontal_alignment = 1
+
+[node name="StartButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+button_mask = 7
+texture_normal = ExtResource("4_0l8wx")
+texture_hover = ExtResource("5_n5jej")
+
+[node name="Label" type="Label" parent="VBoxContainer/StartButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -27.0
+offset_right = 48.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+label_settings = SubResource("LabelSettings_omq0y")
+
+[node name="ExitButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_0l8wx")
+texture_hover = ExtResource("5_n5jej")
+
+[node name="Label" type="Label" parent="VBoxContainer/ExitButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -27.0
+offset_right = 48.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Exit"
+label_settings = SubResource("LabelSettings_omq0y")
+
+[connection signal="button_down" from="VBoxContainer/StartButton" to="." method="_on_start_button_button_down"]
+[connection signal="button_down" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_button_down"]

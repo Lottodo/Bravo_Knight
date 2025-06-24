@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="BraveKnight2"
-run/main_scene="uid://bu82vt6e2yccr"
+run/main_scene="uid://maeka1rxexb8"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="uid://dbpqsh5cnx26g"
 
 [autoload]
 
 GameManager="*res://Singleton/GameManager.gd"
+ObjectMaker="*res://Singleton/ObjectMaker.gd"
 
 [input]
 
