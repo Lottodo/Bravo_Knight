@@ -67,6 +67,7 @@ func _on_hit_box_sword_entered(area: Area2D) -> void:
 		anim_sprite2d.play("death")
 		velocity = Vector2.ZERO
 	else:
+		print("hola")
 		previous_state = current_state
 		current_state = ENEMY_STATES.HIT
 		direction *= -1
