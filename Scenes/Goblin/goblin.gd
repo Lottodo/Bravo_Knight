@@ -1,11 +1,17 @@
 extends BaseEnemy
 
+@onready var anim_sprited2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var bomb_marker2d: Marker2D = $BombMarker2D
+@onready var bomb_cooldown_timer: Timer = $BombCooldownTimer
+
+const BOMBA_SCENE = preload("res://Scenes/Bombs/Goblin_bomb.tscn")
+
 var direction: Vector2 = Vector2.RIGHT
 var initial_pos: Vector2
 var previous_state: ENEMY_STATES
 var gravity = 20000.0
 var player_space = 150
-@onready var anim_sprited2d = $AnimatedSprite2D
+var is_attacking: bool = false
 
 func _ready(): 
 	super._ready()
@@ -24,13 +30,20 @@ func _physics_process(delta: float) -> void:
 			if patrol_timer.is_stopped():
 				patrol_timer.start()
 		ENEMY_STATES.FOLLOWING_PLAYER: #Attack
-			anim_sprite2d.play("attack") #play the attack animation
+			
+			
+			
 			if not patrol_timer.is_stopped():
 				patrol_timer.stop()
 			nav_agent.target_position = player_ref.global_position
 			direction = to_local(nav_agent.get_next_path_position()).normalized()
 			var to_player = player_ref.global_position - global_position
 			var distance = to_player.length()
+			
+			if not is_attacking:
+				is_attacking = true
+				anim_sprite2d.play("attack") #play the attack animation
+				
 			if distance > 250:
 				pass
 			elif distance < 220:
@@ -80,15 +93,44 @@ func _on_hit_box_sword_entered(area: Area2D) -> void:
 		current_state = previous_state
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if anim_sprite2d.animation == "death":
-		queue_free()
+	match anim_sprited2d.animation:
+		"death":
+			queue_free()
+		"attack":
+			print("attack anim finish")
+			do_attack()
+			anim_sprited2d.play("idle")
 
 func apply_gravity(delta): 
 	velocity.y += gravity * delta
-
 
 func _on_invincible_timer_timeout() -> void:
 	hitbox.monitoring = true
 
 func make_invencible():
 	hitbox.monitoring = false
+
+func do_attack():
+	print("la bomba")
+	bomb_cooldown_timer.start()
+	var bomba := BOMBA_SCENE.instantiate() as RigidBody2D
+	var speed_scale: int
+	
+	if direction.x < 0:
+		speed_scale = -1.0
+	else:
+		speed_scale = 1.0
+	
+	bomba.position = position + (bomb_marker2d.position * Vector2(speed_scale, 1.0))
+	get_parent().add_child(bomba)
+	bomba.linear_velocity = Vector2(400.0 * direction.x, -200.0)
+	add_collision_exception_with(bomba)
+
+func reset_state():
+	is_attacking = false
+	current_state = ENEMY_STATES.PATROL
+	
+
+func _on_bomb_cooldown_timer_timeout() -> void:
+	is_attacking = false
+	print("cooldown finished")

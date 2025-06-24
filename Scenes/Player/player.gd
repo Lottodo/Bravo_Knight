@@ -63,10 +63,8 @@ func set_state(new_state: PLAYER_STATE):
 		current_state = new_state
 		match current_state:
 			PLAYER_STATE.RUN:
-				print("Running")
 				anim_sprite2d.play("Run")
-			PLAYER_STATE.IDLE: 
-				print("Idle")
+			PLAYER_STATE.IDLE:
 				anim_sprite2d.play("Idle")
 			PLAYER_STATE.FALL:
 				anim_sprite2d.play("Fall")
@@ -113,7 +111,9 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		reset_states()
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
-	direction = area.get_parent().velocity
+	if area.get_parent() is CharacterBody2D:
+		print("CharacterBody2D")
+		direction = area.get_parent().velocity
 	set_state(PLAYER_STATE.HIT)
 	invincible_timer.start()
 	var tween = create_tween()
