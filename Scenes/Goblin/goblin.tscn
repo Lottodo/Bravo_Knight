@@ -41,6 +41,10 @@ region = Rect2(1050, 0, 150, 150)
 atlas = ExtResource("3_1gaif")
 region = Rect2(1200, 0, 150, 150)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_23wbc"]
+atlas = ExtResource("3_1gaif")
+region = Rect2(1650, 0, 150, 150)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_s4uvl"]
 atlas = ExtResource("3_1gaif")
 region = Rect2(1350, 0, 150, 150)
@@ -48,10 +52,6 @@ region = Rect2(1350, 0, 150, 150)
 [sub_resource type="AtlasTexture" id="AtlasTexture_68v80"]
 atlas = ExtResource("3_1gaif")
 region = Rect2(1500, 0, 150, 150)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_23wbc"]
-atlas = ExtResource("3_1gaif")
-region = Rect2(1650, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_etlm7"]
 atlas = ExtResource("4_ikl4a")
@@ -136,13 +136,13 @@ animations = [{
 "texture": SubResource("AtlasTexture_qwky7")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_23wbc")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_s4uvl")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_68v80")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_23wbc")
 }],
 "loop": false,
 "name": &"attack",
@@ -200,7 +200,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rflwr"]
 radius = 25.0
-height = 226.0
+height = 388.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_124rs"]
 size = Vector2(23, 37)
@@ -214,12 +214,16 @@ script = ExtResource("2_kdlw1")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_amtof")
-animation = &"death"
+animation = &"attack"
 autoplay = "idle"
-frame = 10
+frame = 11
 frame_progress = 1.0
 
+[node name="DetectionArea" parent="." index="1"]
+visible = false
+
 [node name="CollisionShape2D" parent="DetectionArea" index="0"]
+visible = false
 position = Vector2(-2, 5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_rflwr")
@@ -231,9 +235,20 @@ shape = SubResource("RectangleShape2D_124rs")
 debug_color = Color(1, 0, 0, 0.431373)
 
 [node name="CollisionShape2D" parent="." index="3"]
+visible = false
 position = Vector2(-1.5, 8.5)
 shape = SubResource("RectangleShape2D_386me")
 
-[connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
-[connection signal="area_exited" from="DetectionArea" to="." method="_on_detection_area_area_exited"]
-[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[node name="PatrolTimer" parent="." index="5"]
+wait_time = 1.5
+autostart = true
+
+[node name="Marker2D" type="Marker2D" parent="." index="7"]
+scale = Vector2(-355990, nan)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_player_area_entered"]
+[connection signal="area_exited" from="DetectionArea" to="." method="_on_detection_area_exited"]
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_sword_entered"]
+[connection signal="timeout" from="PatrolTimer" to="." method="_on_patrol_timer_timeout"]
+[connection signal="timeout" from="InvincibleTimer" to="." method="_on_invincible_timer_timeout"]

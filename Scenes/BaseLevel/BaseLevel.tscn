@@ -841,7 +841,7 @@ position = Vector2(161, 411)
 scale = Vector2(3, 3)
 
 [node name="Bat" parent="." instance=ExtResource("6_n1wa4")]
-position = Vector2(644, 451)
+position = Vector2(1009, 149)
 
 [node name="Bat2" parent="." instance=ExtResource("6_n1wa4")]
 position = Vector2(5450, 475)
@@ -853,5 +853,5 @@ position = Vector2(3301, 470)
 position = Vector2(2156, 449)
 
 [node name="Goblin" parent="." instance=ExtResource("7_4tuel")]
-position = Vector2(832, 232)
+position = Vector2(762, 436)
 scale = Vector2(2, 2)

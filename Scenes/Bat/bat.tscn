@@ -175,8 +175,6 @@ movement_speed = 10000
 sprite_frames = SubResource("SpriteFrames_ym4rh")
 animation = &"Death"
 autoplay = "Idle"
-frame = 10
-frame_progress = 1.0
 
 [node name="CollisionShape2D" parent="DetectionArea" index="0"]
 shape = SubResource("CircleShape2D_wq8pk")
@@ -190,9 +188,6 @@ debug_color = Color(1, 0.00159327, 0.078427, 0.42)
 [node name="CollisionShape2D" parent="." index="3"]
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_514ka")
-
-[node name="NavigationAgent2D" parent="." index="4"]
-debug_enabled = true
 
 [node name="PatrolTimer" parent="." index="5"]
 wait_time = 3.0
